@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale= 1.0 ">
+<title>Bean & Brew</title>
+<link rel ="stylesheet" href="styles.css">
+    </head>
+        <body>
+        <header>
+            <img src="images/Logo.jpg" alt="A cup of coffee with steam coming off of it with the Bean & Brew intials on the cup, the second B is reversed" class = logo >
+            <h1>Bean & Brew</h1>
+        </header>
+        <nav>
+            <a href="index.html"> Home |</a>
+            <a href="Menu.html"> Menu |</a>
+            <a href="Allergy_Info.html"> Allergy Info |</a>
+            <a href="Book_a_Table.html"> Book a Table |</a>
+            <a href="About_Us.html"> About Us</a>
+        </nav>
+        <main>
+            <div class = "content">
+            <section>
+                <h2>Book a Table</h2>
+                <ul>
+                    <li>Bean&Brew2001@hotmail.com</li>
+                    <li>071646154164</li>
+                    <li>7 Coffee Ave, B3A N13</li>
+                </ul>
+            </section>
+            </div>
+        </main>
+        <div class = "content">
+        <section>
+            <h2>Book a Table</h2>
+            <form id ="bookingForm">
+                <label for = "name">Name: </label><br>
+                    <input type="text" id="name" name="name"><br><br>
+                    <div id ="nameError" class="error"></div><br>
+
+                <label for="date">Booking Date: </label><br>
+                    <input type="date" id="date" name ="date"><br><br>
+                    <div id="dateError" class="error"></div><br>
+
+                <label for="time">Booking Time:</label><br>
+                    <input type="time" id="time" name="time"><br><br>
+                    <div id ="timeError" class="error"></div><br>
+
+                <label for="amount"> How many: </label><br>
+                    <input type="number" id="amount" name ="amount"><br><br>
+                    <div id ="amountError" class="error"></div><br>
+
+                <input type="submit" value="Send">
+                <div id ="formMessage"></div><br>
+            </form>
+        </section>
+        </div>
+
+        <script>
+            const form = document.getElementById('bookingForm');
+            const message = document.getElementById('formMessage');
+
+            form.addEventListener('submit',function(e){
+                e.preventDefault();
+                let valid = true;
+
+                document.querySelectorAll('.error').forEach(el => el.textContent= '');
+                message.textContent = '';
+
+                const name=document.getElementById('name').value.trim();
+                const time=document.getElementById('time').value.trim();
+                const date=document.getElementById('date').value.trim();
+                const amount=document.getElementById('amount').value.trim();
+
+                if (!name){
+                    document.getElementById('nameError').textContent = 'Name is required';
+                    valid = false;
+                }
+                if (!date){
+                    document.getElementById('dateError').textContent = 'Date is required';
+                    valid = false;
+                }
+                if (!time){
+                    document.getElementById('timeError').textContent = 'Time is required';
+                    valid = false;
+                }
+                if (!amount || amount <=0){
+                    document.getElementById('amountError').textContent = 'Enter a valid amount';
+                    valid = false;
+                }
+                if(valid){
+                    message.textContent = 'Booking successfully Completed!';
+                    message.className = 'success';
+                    form.reset();
+                }else{
+                message.textContent='Please fix the error above.';
+                message.className='error';
+                }
+            });
+        </script>
+    </body>
+</html>
